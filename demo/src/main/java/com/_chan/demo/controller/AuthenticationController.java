@@ -1,6 +1,7 @@
 package com._chan.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,9 +21,15 @@ public class AuthenticationController {
         this.userService = userService;
     }
 
+    
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
         return userService.registerUser(user);
+    }
+
+    @GetMapping("/login")
+    public User loginUser(@RequestBody User user) {
+        return userService.loginUser(user);
     }
     
 }

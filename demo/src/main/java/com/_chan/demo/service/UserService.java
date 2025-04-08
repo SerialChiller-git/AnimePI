@@ -23,4 +23,12 @@ public class UserService {
     public User registerUser(User user){
         return userRepo.save(user);
     }
+
+    public User loginUser(User user){
+        User foundUser = userRepo.findByUsernameOrEmail(user.getUsername(), user.getEmail());
+        if(foundUser != null && foundUser.getPassword().equals(user.getPassword())){
+            return foundUser;
+        }
+        return null;
+    }
 }
