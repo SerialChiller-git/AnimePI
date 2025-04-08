@@ -30,13 +30,4 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner run(UserRepository userRepository){
-		return args -> {
-			User u = new User();
-			u.setUsername("gugu");
-			userService.registerUser(u);
-		};
-	}
-
 }
