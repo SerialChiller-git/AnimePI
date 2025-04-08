@@ -25,10 +25,18 @@ public class UserService {
     }
 
     public User loginUser(User user){
-        User foundUser = userRepo.findByUsernameOrEmail(user.getUsername(), user.getEmail());
-        if(foundUser != null && foundUser.getPassword().equals(user.getPassword())){
+        User foundUser = null;
+
+        if (user.getUsername() != null && !user.getUsername().isEmpty()) {
+            foundUser = userRepo.findByUsername(user.getUsername());
+        } else if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+            foundUser = userRepo.findByEmail(user.getEmail());
+        }
+    
+        if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
             return foundUser;
         }
+    
         return null;
     }
 }

@@ -27,8 +27,9 @@ public class AuthenticationController {
         return userService.registerUser(user);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public User loginUser(@RequestBody User user) {
+        System.out.println("LOGIN HIT");
         return userService.loginUser(user);
     }
     
